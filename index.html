@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tshisima Tsha Dora Foundation</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #0e2a47; /* Deep Navy from Logo */
+            --accent-gold: #d48138; /* Gold/Orange from Logo */
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        /* --- Navigation --- */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            /* Important for mobile: stays fixed */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030; 
+        }
+        .navbar-brand img {
+            max-height: 70px; /* Adjust logo size */
+        }
+        .nav-link {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-color: var(--primary-blue);
+            overflow: hidden;
+            padding-top: 80px; /* Add padding to clear the fixed navbar */
+        }
+
+        /* The Background Image Faded */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('TSHISIMA TSHA DORA_.png'); /* Using your file */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2; /* Faded effect */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .btn-custom {
+            background-color: var(--accent-gold);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: #fff;
+            color: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        /* --- General Section Styling --- */
+        .section-padding {
+            padding: 80px 0;
+        }
+        .card-custom {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: transform 0.3s;
+            border-top: 5px solid var(--accent-gold);
+        }
+        .card-custom:hover {
+            transform: translateY(-10px);
+        }
+        .icon-header {
+            font-size: 40px;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        /* --- Floating Images Section --- */
+        .floating-img-section {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .circle-container {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--accent-gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: float 6s ease-in-out infinite; /* Floating Animation */
+        }
+
+        .circle-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Floating Keyframes */
+        @keyframes float {
+            0% { transform: translatey(0px); }
+            50% { transform: translatey(-20px); }
+            100% { transform: translatey(0px); }
+        }
+
+        /* Stagger animation for the second image */
+        .delay-anim {
+            animation-delay: 1s;
+        }
+
+        /* --- Activities Grid (Mobile Optimized) --- */
+        .activity-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-blue);
+        }
+        .activity-icon {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .activity-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        /* Mobile Grid Fix: Ensure col-6 is used specifically on smaller screens */
+        .activity-row .col-6 {
+             padding: 8px; /* Slightly tighter grid on mobile */
+        }
+        /* This rule ensures the activity grid uses 2 columns (50% width) on *all* small devices */
+        @media (max-width: 767.98px) {
+            .activity-row .col-md-4 {
+                width: 50%; /* Force two cards per row */
+            }
+        }
+
+
+        /* --- Floating Social Icons --- */
+        .sticky-socials {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .social-bubble {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .social-bubble:hover {
+            transform: scale(1.1);
+        }
+        .wa-float { background-color: #25D366; }
+        .fb-float { background-color: #1877F2; }
+
+        /* --- Contact/Footer --- */
+        footer {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        .footer-link {
+            color: #ddd;
+            text-decoration: none;
+        }
+        .footer-link:hover { color: var(--accent-gold); }
+
+        /* --- Mobile Specific Overrides --- */
+        @media (max-width: 768px) {
+            /* Hero adjustments */
+            .hero-section {
+                height: 70vh; /* Make hero section shorter on mobile */
+            }
+            .hero-title { 
+                font-size: 2rem; 
+            }
+
+            /* Section padding adjustment */
+            .section-padding {
+                padding: 40px 0;
+            }
+
+            /* Image adjustments */
+            .circle-container { 
+                width: 180px; 
+                height: 180px; 
+                margin-bottom: 20px; /* Add space between stacked images */
+            }
+
+            /* Card adjustments */
+            .card-custom {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="TSHISIMA.png" alt="Tshisima Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#activities">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-bg"></div> <div class="hero-content" data-aos="zoom-in">
+            <h1 class="hero-title">Tshisima Tsha Dora Foundation</h1>
+            <p class="lead mb-4">Empowering Communities Through Indigenous Literature</p>
+            <a href="#contact" class="btn-custom">Get Involved</a>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="card-custom">
+                        <i class="fas fa-bullseye icon-header"></i>
+                        <h3>Our Mission</h3>
+                        <p>Our mission is to promote a love for literature and preserve indigenous languages, inspiring a new generation of readers and writers. We aim to create a platform where local authors can share their stories, and readers can connect with their cultural heritage.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="card-custom">
+                        <i class="fas fa-eye icon-header"></i>
+                        <h3>Our Vision</h3>
+                        <p>Our vision is to create a society where indigenous languages and cultures thrive, and communities come together to celebrate their heritage through literature. We aim to inspire a love for reading and writing in local languages, preserving cultural identity and promoting social cohesion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="floating-img-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4" data-aos="fade-up">
+                    <div class="circle-container">
+                        <img src="WhatsApp Image 2025-11-21 at 20.47.24_upscaled.png" alt="Reading Children">
+                    </div>
+                    <h5 class="mt-3" style="color:var(--primary-blue);">Nurturing Young Minds</h5>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="circle-container delay-anim">
+                        <img src="WhatsApp Image 2025-11-21 at 20.47.25_upscaled.png" alt="Community Leader">
+                    </div>
+                    <h5 class="mt-3" style="color:var(--primary-blue);">Leading With Passion</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-down">
+                <h2 style="color:var(--primary-blue); font-weight:700;">What We Do</h2>
+                <p>We are active in promoting indigenous literature and language preservation.</p>
+            </div>
+
+            <div class="row g-3 activity-row">
+                
+                <div class="col-6 col-md-4" data-aos="flip-left">
+                    <div class="activity-card">
+                        <i class="fas fa-book-reader activity-icon"></i>
+                        <div class="activity-title">Book Club</div>
+                        <p class="small">Discussing books written in indigenous languages to promote cultural heritage.</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4" data-aos="flip-left" data-aos-delay="100">
+                    <div class="activity-card">
+                        <i class="fas fa-pen-nib activity-icon"></i>
+                        <div class="activity-title">Manuscript Pub</div>
+                        <p class="small">Free publication for disabled authors in Tshivenda, Xitsonga, Sepedi & English.</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4" data-aos="flip-left" data-aos-delay="200">
+                    <div class="activity-card">
+                        <i class="fas fa-chalkboard-teacher activity-icon"></i>
+                        <div class="activity-title">Literacy Activities</div>
+                        <p class="small">Workshops and events to promote literacy and a love for reading.</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="activity-card">
+                        <i class="fas fa-shopping-basket activity-icon"></i>
+                        <div class="activity-title">Book Purchases</div>
+                        <p class="small">Buying books from local authors to grow our in-house library.</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4" data-aos="flip-left" data-aos-delay="400">
+                    <div class="activity-card">
+                        <i class="fas fa-star activity-icon"></i>
+                        <div class="activity-title">Book Reviews</div>
+                        <p class="small">Participating in competitions like the one at the University of Pretoria.</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4" data-aos="flip-left" data-aos-delay="500">
+                    <div class="activity-card">
+                        <i class="fas fa-users activity-icon"></i>
+                        <div class="activity-title">Community Events</div>
+                        <p class="small">Attending events like The Book Club Affair to promote reading.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h4>Contact Us</h4>
+                    <p>For Partnership, Collaboration, donation and sponsorship.</p>
+                    <p><i class="fas fa-phone-alt me-2"></i> 072 382 8470</p>
+                    <p><i class="fas fa-envelope me-2"></i> tshisimatshadorafoundation@gmail.com</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Connect With Us</h5>
+                    <p>Follow us on social media for updates.</p>
+                    <a href="https://www.facebook.com/profile.php?id=61572012653436" class="text-white me-3 fs-4" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/27723828470" class="text-white fs-4" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <small>&copy; 2025 Tshisima Tsha Dora Foundation. All Rights Reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-socials">
+        <a href="https://wa.me/27723828470" class="social-bubble wa-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61572012653436" class="social-bubble fb-float" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animation on Scroll
+        AOS.init({
+            duration: 1000, // Animation speed
+            once: false     // Whether animation should happen only once - while scrolling down
+        });
+    </script>
+</body>
+</html>
